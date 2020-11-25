@@ -12,6 +12,7 @@ import java.time.ZonedDateTime;
 @Setter
 @Table(name = "shop_queue_orders")
 public class ShopQueueOrder {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)

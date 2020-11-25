@@ -52,6 +52,8 @@ public class Order {
     @OneToMany
     private List<OrderPayment> payments;
 
+    private Double totalPayment;
+
     @NotNull
     private ZonedDateTime createdAt;
 
