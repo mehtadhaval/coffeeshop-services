@@ -8,26 +8,29 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.ZonedDateTime;
+import java.util.List;
 
+@Entity(name = "shop_menu_groups")
 @Getter
 @Setter
-@Entity
-@Table(name = "shop_timings")
-public class ShopTiming {
+@Table(name = "shop_menu_groups")
+public class ShopMenuGroup {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    private String openTime;
-
-    @NotNull
-    private String closeTime;
-
     @ManyToOne
-    private Shop shop;
+    private ShopMenu menu;
+
+    @NotNull
+    private String name;
+
+    @OneToMany(mappedBy = "menuGroup")
+    private List<ShopMenuItem> items;
+
+    private String notes;
 
     @NotNull
     @CreatedDate
@@ -36,4 +39,5 @@ public class ShopTiming {
     @NotNull
     @LastModifiedDate
     private ZonedDateTime modifiedAt;
+
 }

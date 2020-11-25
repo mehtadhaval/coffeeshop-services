@@ -2,6 +2,8 @@ package com.coffeeshop.domain.order;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -15,7 +17,7 @@ public class OrderPayment {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
@@ -29,8 +31,10 @@ public class OrderPayment {
     private Double amount;
 
     @NotNull
+    @CreatedDate
     private ZonedDateTime createdAt;
 
     @NotNull
+    @LastModifiedDate
     private ZonedDateTime modifiedAt;
 }

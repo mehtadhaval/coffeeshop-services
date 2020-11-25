@@ -2,23 +2,25 @@ package com.coffeeshop.domain.shop;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.ZonedDateTime;
 
-@Entity
+@Entity(name = "shop_menu_items")
 @Getter
 @Setter
 @Table(name = "shop_menu_items")
 public class ShopMenuItem {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    private ShopMenu menu;
+    private ShopMenuGroup menuGroup;
 
     @NotNull
     private String name;
@@ -28,8 +30,10 @@ public class ShopMenuItem {
     private Double price;
 
     @NotNull
+    @CreatedDate
     private ZonedDateTime createdAt;
 
     @NotNull
+    @LastModifiedDate
     private ZonedDateTime modifiedAt;
 }

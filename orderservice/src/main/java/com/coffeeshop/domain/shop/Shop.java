@@ -5,6 +5,8 @@ import com.coffeeshop.domain.Address;
 import com.coffeeshop.domain.ContactDetails;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -19,7 +21,7 @@ public class Shop {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -41,8 +43,13 @@ public class Shop {
     private List<ShopTiming> timings;
 
     @NotNull
+    private String currencyCode;
+
+    @NotNull
+    @CreatedDate
     private ZonedDateTime createdAt;
 
     @NotNull
+    @LastModifiedDate
     private ZonedDateTime modifiedAt;
 }
