@@ -1,0 +1,21 @@
+version: "3.4"
+
+services:
+  coffeeshop-db:
+    image: postgres:13.1
+    environment:
+      POSTGRES_USER: coffeeshop
+      POSTGRES_PASSWORD: 975ef70ce2dd7ae8dd7de7c930d90d0d
+      POSTGRES_DB: coffeeshop
+    ports:
+      - "5432:5432"
+    networks:
+      - coffeeshop_network
+    volumes:
+      - db-data:/var/lib/postgresql/data
+networks:
+  coffeeshop_network:
+    driver: bridge
+
+volumes:
+  db-data:
