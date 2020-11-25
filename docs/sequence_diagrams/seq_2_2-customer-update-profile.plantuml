@@ -1,0 +1,41 @@
+@startuml
+
+== Update Profile ==
+
+Customer -> CustomerService: Update Profile
+
+note left
+Name
+Address
+Mobile Number
+end note
+
+Customer <-- CustomerService
+
+
+== Set Preferred Shop ==
+
+Customer -> CustomerService: Set Preferred Shop
+
+note left
+Preferred Shop
+end note
+
+Customer <-- CustomerService
+
+== Manage Payment Methods ==
+
+Customer -> CustomerService: Set Preferred Payment Mode
+
+note left
+Payment Mode
+end note
+
+Customer <-- CustomerService
+
+== View Previous Orders ==
+
+Customer -> OrderService: View Previous Orders
+Customer <-- OrderService: List of Orders
+
+@enduml

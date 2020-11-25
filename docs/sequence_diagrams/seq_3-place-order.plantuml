@@ -1,0 +1,81 @@
+@startuml
+
+== Find a nearby shop ==
+
+Customer -> ShopService: Find nearby Coffee Shops
+
+note left
+Customer Lat/Long
+end note
+
+Customer <-- ShopService: List of Coffee Shops\nsorted by distance
+
+Customer -> ShopService: Get Shop Details
+
+Customer <-- ShopService: Shop Details
+
+note left
+Shop Address
+Timings
+Status:
+- Whether Accepting Orders
+- Estimated Wait Time
+Shop Contact Details
+end note
+
+== Get Menu ==
+
+Customer -> ShopService: Get Menu
+
+note left
+Shop Id
+end note
+
+Customer <-- ShopService: Menu
+
+== Place Order ==
+
+Customer -> OrderService: Place Order
+
+note left
+- Shop Id
+- MenuItem Id
+- Order Notes
+- Payment Details (if any)
+end note
+
+OrderService -> ShopService: Check whether shop\nis accepting orders
+
+OrderService <-- ShopService : Confirmation
+
+OrderService -> OrderService: Assign Order to Queue
+
+Customer <-- OrderService: Order Confirmation
+
+note right
+Estimated Time
+when Order will be ready
+Current Number in Queue
+end note
+
+== Check Order ==
+
+Customer -> OrderService: Get Order Details
+Customer <-- OrderService: Order Details
+
+== Modify/Cancel Order ==
+
+Customer -> OrderService: Update/Cancel Order
+
+ShopService <- OrderService: Check whether \norder can be modified
+
+note right
+Don't allow to modify
+order if it is being prepared
+end note
+
+ShopService --> OrderService: Confirmation
+
+Customer <-- OrderService: Update confirmation
+
+@enduml

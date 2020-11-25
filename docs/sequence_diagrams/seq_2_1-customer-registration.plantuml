@@ -1,0 +1,30 @@
+@startuml
+
+== Register ==
+
+Customer -> CustomerService: Register
+
+note left
+- Name
+- Address
+- Mobile Number
+- Credentials
+end note
+
+CustomerService -> CustomerService: Verify Details
+
+CustomerService -> AuthService: Store Credentials
+CustomerService <-- AuthService
+
+Customer <-- CustomerService: Customer Details
+
+== Obtain Auth Token ==
+
+Customer -> AuthService: Create Token
+note left
+Credentials
+end note
+AuthService -> AuthService: Verify Credentials
+Customer <-- AuthService: Token
+
+@enduml

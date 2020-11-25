@@ -1,0 +1,47 @@
+@startuml
+
+== List Orders in a Queue ==
+
+ShopBarista -> OrderService: Get Orders For nth-Queue
+
+OrderService -> ShopService: Verify ShopBarista
+
+OrderService <-- ShopService: Verified
+
+ShopBarista <-- OrderService: List of Orders
+
+== Process Order ==
+
+ShopBarista -> OrderService: Get Order Details
+
+ShopBarista <-- OrderService: Order Details
+
+note left
+Order Items
+Payment Details
+end note
+
+ShopBarista -> ShopBarista: Prepare Order
+
+ShopBarista -> OrderService: Mark order as "Preparing"
+
+OrderService -> Customer: Notify
+
+ShopBarista -> OrderService: Mark order as "Ready for pickup"
+
+OrderService -> Customer: Notify
+
+== Pickup Order ==
+
+Customer -> Customer: Picks up the Order
+ShopBarista -> OrderService: Process Payment (if any)
+ShopBarista <-- OrderService
+
+ShopBarista -> OrderService: Mark order as completed
+OrderService -> Customer: Notify
+
+OrderService -> OrderService: Update Queue
+
+ShopBarista <-- OrderService
+
+@enduml

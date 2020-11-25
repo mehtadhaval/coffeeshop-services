@@ -1,0 +1,180 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: Coffee Shop Services
+  description: Provides an Outline of APIs to be developed for Coffee Shop Services
+
+securityDefinitions:
+  implicit:
+    type: oauth2
+    authorizationUrl: http://example.com/oauth/auth
+    flow: implicit
+    scopes:
+      write: allows modifying resources
+      read: allows reading resources
+
+security:
+  - implicit:
+      - read
+      - write
+paths:
+  /auth/create-user:
+    post:
+      summary: Create a user
+      responses:
+        200:
+          description: OK
+      tags:
+        - AuthService
+  /auth/token:
+    post:
+      summary: Create an Auth token for given credentials
+      responses:
+        200:
+          description: OK
+        400:
+          description: Invalid credentials
+      tags:
+        - AuthService
+  /customers/register:
+    post:
+      summary: Register a customer
+      responses:
+        200:
+          description: OK
+      tags:
+        - CustomerService
+  /customers/:custId:
+    get:
+      summary: Get customer details
+      responses:
+        200:
+          description: OK
+      tags:
+        - CustomerService
+    put:
+      summary: Update customer details
+      responses:
+        200:
+          description: OK
+      tags:
+        - CustomerService
+  /shops/register:
+    post:
+      summary: Register a Shop
+      description: API to register a Shop
+      responses:
+        200:
+          description: Shop registered successfully
+      tags:
+        - ShopService
+  /shops/:shopId:
+    get:
+      summary: Get Shop Details
+      responses:
+        200:
+          description: OK
+      tags:
+        - ShopService
+    put:
+      summary: Update Shop
+      responses:
+        200:
+          description: OK
+      tags:
+        - ShopService
+  /shops/search-nearby:
+    get:
+      summary: Search shops nearby to provided lat/long
+      responses:
+        200:
+          description: OK
+      tags:
+        - ShopService
+  /shops/:shopId/menu:
+    get:
+      summary: Get menu of selected Shop
+      responses:
+        200:
+          description: OK
+      tags:
+        - ShopService
+  /shops/:shopId/status:
+    get:
+      summary: Get shop status (whether shop is accepting orders)
+      responses:
+        200:
+          description: OK
+      tags:
+        - ShopService
+  /orders:
+    post:
+      summary: Place an Order
+      responses:
+        200:
+          description: OK
+      tags:
+        - OrderService
+  /orders/:orderId:
+    get:
+      summary: Get order details
+      responses:
+        200:
+          description: OK
+      tags:
+        - OrderService
+    put:
+      summary: Modify order
+      responses:
+        200:
+          description: OK
+      tags:
+        - OrderService
+  /orders/:orderId/cancel:
+    post:
+      summary: Mark an order as "Cancelled"
+      responses:
+        200:
+          description: OK
+      tags:
+        - OrderService
+  /orders/:orderId/preparing:
+    post:
+      summary: Mark an order as "Preparing"
+      responses:
+        200:
+          description: OK
+      tags:
+        - OrderService
+  /orders/:orderId/ready:
+    post:
+      summary: Mark an order as "Ready for Pickup"
+      responses:
+        200:
+          description: OK
+      tags:
+        - OrderService
+  /orders/:orderId/completed:
+    post:
+      summary: Mark an order as "Completed"
+      responses:
+        200:
+          description: OK
+      tags:
+        - OrderService
+  /orders/shops/:shopid/queue/:queueId:
+    get:
+      summary: Get list of orders in the specified queue
+      responses:
+        200:
+          description: OK
+      tags:
+        - OrderService
+  /orders/customers/:custId:
+    get:
+      summary: Get list of orders for speficied customer
+      responses:
+        200:
+          description: OK
+      tags:
+        - OrderService

@@ -1,0 +1,52 @@
+@startuml
+
+== Register Shop ==
+
+ShopAdmin -> ShopService: Register Shop
+
+note left
+- Location
+- Contact Details
+- No of Queues
+- Max size of a Queue
+- Timing
+- Credentials
+end note
+
+ShopService -> ShopService: Verify Shop Admin
+
+ShopService -> ShopService: Create Shop
+
+ShopService -> AuthService: Store Credentials
+ShopService <-- AuthService
+
+ShopAdmin <-- ShopService: Shop Details
+
+== Obtain Auth Token ==
+
+ShopAdmin -> AuthService: Create Token
+note left
+Credentials
+end note
+AuthService -> AuthService: Verify Credentials
+ShopAdmin <-- AuthService: Token
+
+== Update Shop ==
+
+ShopAdmin -> ShopService: Update Shop
+
+note left
+- Location
+- Contact Details
+- No of Queues
+- Max size of a Queue
+- Timing
+end note
+
+ShopService -> ShopService: Verify Shop Admin
+
+ShopService -> ShopService: Update Shop
+
+ShopAdmin <-- ShopService
+
+@enduml
