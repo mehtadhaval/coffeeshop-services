@@ -3,18 +3,20 @@ package com.coffeeshop.domain.shop;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@Table(name = "shop_menu")
 public class ShopMenu {
 
     @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne
@@ -22,4 +24,10 @@ public class ShopMenu {
 
     @OneToMany
     private List<ShopMenuItem> items;
+
+    @NotNull
+    private ZonedDateTime createdAt;
+
+    @NotNull
+    private ZonedDateTime modifiedAt;
 }

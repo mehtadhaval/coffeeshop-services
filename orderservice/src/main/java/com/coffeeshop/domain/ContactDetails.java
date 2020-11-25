@@ -1,4 +1,4 @@
-package com.coffeeshop.domain.shop;
+package com.coffeeshop.domain;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,25 +7,23 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.ZonedDateTime;
 
-@Entity
+@Entity(name = "contact_details")
 @Getter
 @Setter
-@Table(name = "shop_menu_items")
-public class ShopMenuItem {
+@Table(name = "contact_details")
+public class ContactDetails {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
-    private ShopMenu menu;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private ContactType contactType;
 
     @NotNull
-    private String name;
-
-    private String description;
-
-    private Double price;
+    private String value;
 
     @NotNull
     private ZonedDateTime createdAt;

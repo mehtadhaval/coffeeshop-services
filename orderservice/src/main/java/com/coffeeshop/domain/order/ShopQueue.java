@@ -1,5 +1,6 @@
-package com.coffeeshop.domain.shop;
+package com.coffeeshop.domain.order;
 
+import com.coffeeshop.domain.shop.Shop;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,22 +11,22 @@ import java.time.ZonedDateTime;
 @Entity
 @Getter
 @Setter
-@Table(name = "shop_menu_items")
-public class ShopMenuItem {
+@Table(name = "shop_queues")
+public class ShopQueue {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne
-    private ShopMenu menu;
+    private Shop shop;
 
     @NotNull
-    private String name;
+    private Integer queueNo;
 
-    private String description;
-
-    private Double price;
+    @NotNull
+    private boolean active;
 
     @NotNull
     private ZonedDateTime createdAt;

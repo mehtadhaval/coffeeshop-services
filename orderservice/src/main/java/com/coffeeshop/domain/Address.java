@@ -1,4 +1,4 @@
-package com.coffeeshop.domain.shop;
+package com.coffeeshop.domain;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,25 +7,30 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.ZonedDateTime;
 
-@Entity
+@Entity(name = "addresses")
 @Getter
 @Setter
-@Table(name = "shop_menu_items")
-public class ShopMenuItem {
+@Table(name = "addresses")
+public class Address {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
-    private ShopMenu menu;
+    private String addressLine1;
+
+    private String addressLine2;
+
+    private String City;
+
+    private String zip;
 
     @NotNull
-    private String name;
+    private Double latitude;
 
-    private String description;
-
-    private Double price;
+    @NotNull
+    private Double longitude;
 
     @NotNull
     private ZonedDateTime createdAt;

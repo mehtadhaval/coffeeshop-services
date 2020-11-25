@@ -3,25 +3,28 @@ package com.coffeeshop.domain.order;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.ZonedDateTime;
 
 @Entity
 @Getter
 @Setter
-public class OrderQueue {
+@Table(name = "shop_queue_orders")
+public class ShopQueueOrder {
     @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @OneToOne
     private Order order;
 
-    @NotNull
-    private Integer queueNo;
+    private boolean active;
 
     @NotNull
     private ZonedDateTime createdAt;
+
+    @NotNull
+    private ZonedDateTime modifiedAt;
 }
