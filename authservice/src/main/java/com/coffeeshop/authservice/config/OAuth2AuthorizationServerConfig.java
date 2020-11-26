@@ -21,7 +21,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @EnableAuthorizationServer
 public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    @Value("${coffeshop.security.oauth2.signingKey:secret}")
+    @Value("${coffeeshop.security.oauth2.signingKey:secret}")
     private String signingKey;
 
     @Autowired
