@@ -41,7 +41,7 @@ public class Shop {
     @NotNull
     private Integer queueSize;
 
-    @OneToMany
+    @OneToMany(mappedBy = "shop")
     private List<ShopTiming> timings;
 
     @NotNull

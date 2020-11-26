@@ -53,7 +53,7 @@ public class Order {
     @OneToOne(cascade = CascadeType.ALL)
     private ShopQueueOrder queue;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderPayment> payments;
 
     private Double totalPayment;

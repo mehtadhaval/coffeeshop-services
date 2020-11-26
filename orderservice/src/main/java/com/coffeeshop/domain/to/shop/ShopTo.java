@@ -1,8 +1,7 @@
 package com.coffeeshop.domain.to.shop;
 
-import com.coffeeshop.domain.Address;
-import com.coffeeshop.domain.ContactDetails;
-import com.coffeeshop.domain.shop.ShopTiming;
+import com.coffeeshop.domain.to.AddressTo;
+import com.coffeeshop.domain.to.ContactDetailsTo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,13 +17,13 @@ public class ShopTo {
 
     private String locationName;
 
-    private List<ContactDetails> contactDetails;
+    private List<ContactDetailsTo> contactDetails;
 
-    private List<Address> addresses;
+    private List<AddressTo> addresses;
 
     private Integer queueCount;
 
     private Integer queueSize;
 
-    private List<ShopTiming> timings;
+    private List<ShopTimingTo> timings;
 }

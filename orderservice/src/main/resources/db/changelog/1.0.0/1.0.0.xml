@@ -1,7 +1,7 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.10.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
     <changeSet author="dhaval" context="master" id="create-table-users">
-        <createTable tableName="users">
+        <createTable tableName="users" remarks="Holds both customers and coffee shop staff details">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="users_pkey"/>
             </column>
@@ -26,7 +26,7 @@
         </createTable>
     </changeSet>
     <changeSet author="dhaval" context="master" id="create-table-order_processing_events">
-        <createTable tableName="order_processing_events">
+        <createTable tableName="order_processing_events" remarks="Holds all the status transition events for an Order">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="order_processing_events_pkey"/>
             </column>
@@ -44,7 +44,7 @@
         </createTable>
     </changeSet>
     <changeSet author="dhaval" context="master" id="create-table-shop_queue_orders">
-        <createTable tableName="shop_queue_orders">
+        <createTable tableName="shop_queue_orders" remarks="Orders in a queue in a Shop">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="shop_queue_orders_pkey"/>
             </column>
@@ -59,16 +59,6 @@
             </column>
             <column name="order_id" type="BIGINT"/>
             <column name="shop_queue_id" type="BIGINT"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="dhaval" context="master" id="create-table-orders_payments">
-        <createTable tableName="orders_payments">
-            <column name="order_id" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="payments_id" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
         </createTable>
     </changeSet>
     <changeSet author="dhaval" context="master" id="create-table-shops_contact_details">
@@ -97,7 +87,7 @@
         </createTable>
     </changeSet>
     <changeSet author="dhaval" context="master" id="create-table-shop_menu_items">
-        <createTable tableName="shop_menu_items">
+        <createTable tableName="shop_menu_items" remarks="Items within a menu group">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="shop_menu_items_pkey"/>
             </column>
@@ -115,18 +105,8 @@
             <column name="menu_group_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="dhaval" context="master" id="create-table-shops_timings">
-        <createTable tableName="shops_timings">
-            <column name="shop_id" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="timings_id" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
     <changeSet author="dhaval" context="master" id="create-table-shop_menu_groups">
-        <createTable tableName="shop_menu_groups">
+        <createTable tableName="shop_menu_groups" remarks="Provides grouping capability for menu, e.g. Hot Beverages, Cold Beverages, etc">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="shop_menu_groups_pkey"/>
             </column>
@@ -144,7 +124,7 @@
         </createTable>
     </changeSet>
     <changeSet author="dhaval" context="master" id="create-table-addresses">
-        <createTable tableName="addresses">
+        <createTable tableName="addresses" remarks="denormalized table to store all addresses for users and shops">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="addresses_pkey"/>
             </column>
@@ -232,7 +212,7 @@
         </createTable>
     </changeSet>
     <changeSet author="dhaval" context="master" id="create-table-shop_users">
-        <createTable tableName="shop_users">
+        <createTable tableName="shop_users" remarks="Shop staff and roles mapping">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="shop_users_pkey"/>
             </column>
@@ -308,7 +288,7 @@
         </createTable>
     </changeSet>
     <changeSet author="dhaval" context="master" id="create-table-order_payments">
-        <createTable tableName="order_payments">
+        <createTable tableName="order_payments" remarks="payments made against an Order">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="order_payments_pkey"/>
             </column>
@@ -375,12 +355,6 @@
     <changeSet author="dhaval" context="master" id="add-fk-order_processing_events-processed_by_id">
         <addForeignKeyConstraint baseColumnNames="processed_by_id" baseTableName="order_processing_events" constraintName="fk_order_processing_events_processed_by_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users" validate="true"/>
     </changeSet>
-    <changeSet author="dhaval" context="master" id="add-uk-orders_payments-payments_id">
-        <addUniqueConstraint columnNames="payments_id" constraintName="uk_orders_payments_payments_id" tableName="orders_payments"/>
-    </changeSet>
-    <changeSet author="dhaval" context="master" id="add-uk-shops_timings-timings_id">
-        <addUniqueConstraint columnNames="timings_id" constraintName="uk_shops_timings_timings_id" tableName="shops_timings"/>
-    </changeSet>
     <changeSet author="dhaval" context="master" id="add-fk-shop_menu_groups-menu_id">
         <addForeignKeyConstraint baseColumnNames="menu_id" baseTableName="shop_menu_groups" constraintName="fk_shop_menu_groups_menu_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shop_menu" validate="true"/>
     </changeSet>
@@ -438,12 +412,6 @@
     <changeSet author="dhaval" context="master" id="add-fk-shop_queue_orders-shop_queue_id">
         <addForeignKeyConstraint baseColumnNames="shop_queue_id" baseTableName="shop_queue_orders" constraintName="fk_shop_queue_orders_shop_queue_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shop_queues" validate="true"/>
     </changeSet>
-    <changeSet author="dhaval" context="master" id="add-fk-orders_payments-payments_id">
-        <addForeignKeyConstraint baseColumnNames="payments_id" baseTableName="orders_payments" constraintName="fk_orders_payments_payments_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="order_payments" validate="true"/>
-    </changeSet>
-    <changeSet author="dhaval" context="master" id="add-fk-orders_payments-order_id">
-        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="orders_payments" constraintName="fk_orders_payments_order_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="orders" validate="true"/>
-    </changeSet>
     <changeSet author="dhaval" context="master" id="add-fk-shops_contact_details-shop_id">
         <addForeignKeyConstraint baseColumnNames="shop_id" baseTableName="shops_contact_details" constraintName="fk_shops_contact_details_shop_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shops" validate="true"/>
     </changeSet>
@@ -452,12 +420,6 @@
     </changeSet>
     <changeSet author="dhaval" context="master" id="add-fk-shop_menu_items-menu_group_id">
         <addForeignKeyConstraint baseColumnNames="menu_group_id" baseTableName="shop_menu_items" constraintName="fk_shop_menu_items_menu_group_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shop_menu_groups" validate="true"/>
-    </changeSet>
-    <changeSet author="dhaval" context="master" id="add-fk-shops_timings-timings_id">
-        <addForeignKeyConstraint baseColumnNames="timings_id" baseTableName="shops_timings" constraintName="fk_shops_timings_timings_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shop_timings" validate="true"/>
-    </changeSet>
-    <changeSet author="dhaval" context="master" id="add-fk-shops_timings-shop_id">
-        <addForeignKeyConstraint baseColumnNames="shop_id" baseTableName="shops_timings" constraintName="fk_shops_timings_shop_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shops" validate="true"/>
     </changeSet>
     <changeSet author="dhaval" context="master" id="add-fk-shop_timings-shop_id">
         <addForeignKeyConstraint baseColumnNames="shop_id" baseTableName="shop_timings" constraintName="fk_shop_timings_shop_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shops" validate="true"/>
