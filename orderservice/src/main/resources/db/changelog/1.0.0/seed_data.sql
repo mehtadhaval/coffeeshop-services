@@ -53,10 +53,11 @@ INSERT INTO public.shop_menu_items (created_at,description,modified_at,"name",pr
 VALUES ('2020-11-26 02:10:12.008','Refreshing and Seasonal','2020-11-26 02:10:14.125','Summer 2020',11.5,2);
 
 -- Auto-generated SQL script #202011260212
-INSERT INTO public.users (created_at,modified_at,"name")
-VALUES ('2020-11-26 02:11:52.939','2020-11-26 02:11:55.144','Dhaval Mehta');
-INSERT INTO public.users (created_at,modified_at,"name")
-VALUES ('2020-11-26 02:12:12.316','2020-11-26 02:12:14.325','John Doe');
+-- Password : Password@1
+INSERT INTO public.users (created_at,modified_at,"name", username, password, enabled)
+VALUES ('2020-11-26 02:11:52.939','2020-11-26 02:11:55.144','Dhaval Mehta', 'dhaval', '$2y$12$nIg5HoXb.Okfzyu.C5PwKOPkvdusbW6WzM1vdHUKj2J74/8PoS/PO', true);
+INSERT INTO public.users (created_at,modified_at,"name", username, password, enabled)
+VALUES ('2020-11-26 02:12:12.316','2020-11-26 02:12:14.325','John Doe', 'john', '$2y$12$nIg5HoXb.Okfzyu.C5PwKOPkvdusbW6WzM1vdHUKj2J74/8PoS/PO', true);
 
 -- Auto-generated SQL script #202011260213
 INSERT INTO public.users_addresses (users_id,addresses_id)
