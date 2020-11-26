@@ -3,10 +3,12 @@ package com.coffeeshop.orders.service;
 import com.coffeeshop.domain.order.Order;
 import com.coffeeshop.domain.order.ShopQueue;
 import com.coffeeshop.domain.order.ShopQueueOrder;
+import com.coffeeshop.domain.repository.order.OrderRepository;
 import com.coffeeshop.domain.repository.order.ShopQueueOrderRepository;
 import com.coffeeshop.domain.repository.order.ShopQueueRepository;
 import com.coffeeshop.domain.repository.shop.ShopRepository;
 import com.coffeeshop.domain.shop.Shop;
+import com.coffeeshop.domain.to.order.QueuePositionTo;
 import com.coffeeshop.orders.exception.AllQueuesAtCapacityException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
@@ -29,6 +31,9 @@ public class OrderQueueServiceImpl implements OrderQueueService {
 
     @Autowired
     private ShopRepository shopRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
 
     @Override
     public void putOrderInQueue(Order order) {
@@ -53,6 +58,22 @@ public class OrderQueueServiceImpl implements OrderQueueService {
         shopQueueOrder.setOrder(order);
         shopQueueOrder.setShopQueue(assignedQueueCountPair.getFirst());
         shopQueueOrder.setActive(true);
+        order.setShop(shop);
         order.setQueue(shopQueueOrder);
+    }
+
+    @Override
+    public QueuePositionTo calculateWaitTime(Long orderId) {
+
+        Order order = orderRepository.getOne(orderId);
+        ShopQueueOrder queueOrder = order.getQueue();
+        ShopQueue shopQueue = queueOrder.getShopQueue();
+        // Find active orders in the queue before this order
+        long ordersInQueue = shopQueueOrderRepository.countAllByShopQueueIdAndIdLessThanAndActiveTrue(
+                shopQueue.getId(), queueOrder.getId());
+
+        long queuePosition = ordersInQueue + 1;
+
+        return new QueuePositionTo(queuePosition, queuePosition * shopQueue.getAvgProcessingDuration());
     }
 }

@@ -32,6 +32,8 @@ public class ShopQueue {
     @NotNull
     private boolean active;
 
+    private Long avgProcessingDuration;
+
     @NotNull
     @CreatedDate
     private Date createdAt;

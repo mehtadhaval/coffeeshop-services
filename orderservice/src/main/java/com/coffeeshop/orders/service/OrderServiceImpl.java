@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
-@Transactional
 @Service
+@Transactional
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
@@ -37,7 +37,7 @@ public class OrderServiceImpl implements OrderService {
 
         order.setUser(user);
         order.setStatus(OrderStatus.PLACED);
-        Order savedOrder = orderRepository.save(order);
+        Order savedOrder = orderRepository.saveAndFlush(order);
 
         orderProcessingEventService.createOrderStatusEvent(savedOrder);
         return savedOrder;
@@ -51,6 +51,7 @@ public class OrderServiceImpl implements OrderService {
             orderItem.setPrice(price);
             order.setAmount(price + order.getAmount());
             orderItem.setOrder(order);
+            orderItem.setShopMenuItem(shopMenuItem);
         });
     }
 
@@ -60,5 +61,10 @@ public class OrderServiceImpl implements OrderService {
 
     private void processOrderTotal(Order order) {
         order.setTotal(order.getAmount() - order.getDiscount());
+    }
+
+    @Override
+    public Order get(Long orderId) {
+        return orderRepository.getOne(orderId);
     }
 }

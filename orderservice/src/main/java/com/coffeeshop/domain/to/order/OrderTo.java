@@ -33,4 +33,6 @@ public class OrderTo {
 
     private OrderStatus status;
 
+    private QueuePositionTo queuePosition;
+
 }

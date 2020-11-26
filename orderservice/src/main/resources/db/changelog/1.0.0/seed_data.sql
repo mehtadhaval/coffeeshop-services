@@ -72,10 +72,10 @@ VALUES ('2020-11-26 02:14:31.708','2020-11-26 02:14:33.755','OWNER',1,2);
 
 -- Auto-generated SQL script #202011260217
 -- Auto-generated SQL script #202011260217
-INSERT INTO public.shop_queues (active,created_at,modified_at,queue_no,shop_id)
-VALUES (true,'2020-11-26 02:17:29.823','2020-11-26 02:17:32.588',1,1);
-INSERT INTO public.shop_queues (active,created_at,modified_at,queue_no,shop_id)
-VALUES (true,'2020-11-26 02:17:34.611','2020-11-26 02:17:37.069',2,1);
-INSERT INTO public.shop_queues (active,created_at,modified_at,queue_no,shop_id)
-VALUES (true,'2020-11-26 02:17:08.939','2020-11-26 02:17:11.950',3,1);
+INSERT INTO public.shop_queues (active,created_at,modified_at,queue_no,shop_id, avg_processing_duration)
+VALUES (true,'2020-11-26 02:17:29.823','2020-11-26 02:17:32.588',1,1, 180);
+INSERT INTO public.shop_queues (active,created_at,modified_at,queue_no,shop_id, avg_processing_duration)
+VALUES (true,'2020-11-26 02:17:34.611','2020-11-26 02:17:37.069',2,1, 180);
+INSERT INTO public.shop_queues (active,created_at,modified_at,queue_no,shop_id, avg_processing_duration)
+VALUES (true,'2020-11-26 02:17:08.939','2020-11-26 02:17:11.950',3,1, 180);
 

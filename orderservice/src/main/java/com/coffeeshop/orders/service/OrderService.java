@@ -5,4 +5,6 @@ import com.coffeeshop.domain.order.Order;
 
 public interface OrderService {
     Order save(Order order, User user);
+
+    Order get(Long orderId);
 }

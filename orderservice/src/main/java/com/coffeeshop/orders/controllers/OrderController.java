@@ -4,6 +4,7 @@ import com.coffeeshop.domain.User;
 import com.coffeeshop.domain.mapper.order.OrderMapper;
 import com.coffeeshop.domain.order.Order;
 import com.coffeeshop.domain.to.order.OrderTo;
+import com.coffeeshop.orders.service.OrderQueueService;
 import com.coffeeshop.orders.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,13 +24,15 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private OrderQueueService orderQueueService;
+
     @PostMapping
     public ResponseEntity<OrderTo> create(@Valid @RequestBody OrderTo orderTo, User user) {
-        Order order = orderMapper.convertToOrder(orderTo);
+        Order order = orderService.save(orderMapper.convertToOrder(orderTo), user);
 
-        Order savedOrder = orderService.save(order, user);
-
-        OrderTo savedOrderTo = orderMapper.convertToOrderTo(savedOrder);
+        OrderTo savedOrderTo = orderMapper.convertToOrderTo(order);
+        savedOrderTo.setQueuePosition(orderQueueService.calculateWaitTime(savedOrderTo.getId()));
 
         return new ResponseEntity<>(savedOrderTo, HttpStatus.CREATED);
     }
