@@ -6,16 +6,18 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "orders")
+@EntityListeners(AuditingEntityListener.class)
 public class Order {
 
     @Id
@@ -29,7 +31,7 @@ public class Order {
     @ManyToOne
     private Shop shop;
 
-    @OneToMany
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> items;
 
     private String notes;
@@ -48,19 +50,19 @@ public class Order {
 
     private Long processingDuration;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private ShopQueueOrder queue;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<OrderPayment> payments;
 
     private Double totalPayment;
 
     @NotNull
     @CreatedDate
-    private ZonedDateTime createdAt;
+    private Date createdAt;
 
     @NotNull
     @LastModifiedDate
-    private ZonedDateTime modifiedAt;
+    private Date modifiedAt;
 }

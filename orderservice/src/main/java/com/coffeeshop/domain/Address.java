@@ -7,7 +7,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.ZonedDateTime;
+import java.util.Date;
 
 @Entity(name = "addresses")
 @Getter
@@ -36,9 +36,9 @@ public class Address {
 
     @NotNull
     @CreatedDate
-    private ZonedDateTime createdAt;
+    private Date createdAt;
 
     @NotNull
     @LastModifiedDate
-    private ZonedDateTime modifiedAt;
+    private Date modifiedAt;
 }

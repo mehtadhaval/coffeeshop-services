@@ -7,16 +7,18 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "shops")
+@EntityListeners(AuditingEntityListener.class)
 public class Shop {
 
     @Id
@@ -47,9 +49,9 @@ public class Shop {
 
     @NotNull
     @CreatedDate
-    private ZonedDateTime createdAt;
+    private Date createdAt;
 
     @NotNull
     @LastModifiedDate
-    private ZonedDateTime modifiedAt;
+    private Date modifiedAt;
 }
