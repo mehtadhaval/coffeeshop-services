@@ -4,6 +4,7 @@ import com.coffeeshop.domain.User;
 import com.coffeeshop.domain.mapper.order.OrderMapper;
 import com.coffeeshop.domain.order.Order;
 import com.coffeeshop.domain.to.order.OrderTo;
+import com.coffeeshop.orders.exception.NotFoundException;
 import com.coffeeshop.orders.service.OrderQueueService;
 import com.coffeeshop.orders.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,16 @@ public class OrderController {
         savedOrderTo.setQueuePosition(orderQueueService.calculateWaitTime(savedOrderTo.getId()));
 
         return new ResponseEntity<>(savedOrderTo, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<OrderTo> get(@PathVariable long id, User user) {
+        Order order = orderService.getForUser(id, user.getId()).orElseThrow(NotFoundException::new);
+
+        OrderTo orderTo = orderMapper.convertToOrderTo(order);
+        orderTo.setQueuePosition(orderQueueService.calculateWaitTime(orderTo.getId()));
+
+        return new ResponseEntity<>(orderTo, HttpStatus.OK);
     }
 
 }
