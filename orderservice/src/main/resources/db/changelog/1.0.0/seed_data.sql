@@ -34,49 +34,49 @@ INSERT INTO shop_menu_groups (created_at,modified_at,notes,menu_id,"name") VALUE
 ;
 
 -- Auto-generated SQL script #202011260208
-INSERT INTO public.shop_menu_groups (created_at,modified_at,"name",notes,menu_id)
+INSERT INTO shop_menu_groups (created_at,modified_at,"name",notes,menu_id)
 VALUES ('2020-11-26 02:08:11.677','2020-11-26 02:08:13.811','Cold Coffee','Served cold with Ice Cream',1);
 
 
 -- Auto-generated SQL script #202011260207
-INSERT INTO public.shop_menu_items (created_at,modified_at,"name",price,menu_group_id)
+INSERT INTO shop_menu_items (created_at,modified_at,"name",price,menu_group_id)
 VALUES ('2020-11-26 02:05:37.243','2020-11-26 02:05:59.338','Espresso',5.5,1);
-INSERT INTO public.shop_menu_items (created_at,modified_at,"name",price,menu_group_id)
+INSERT INTO shop_menu_items (created_at,modified_at,"name",price,menu_group_id)
 VALUES ('2020-11-26 02:06:23.707','2020-11-26 02:06:26.495','Cappuccino',8.3,1);
-INSERT INTO public.shop_menu_items (created_at,modified_at,"name",price,menu_group_id)
+INSERT INTO shop_menu_items (created_at,modified_at,"name",price,menu_group_id)
 VALUES ('2020-11-26 02:07:17.237','2020-11-26 02:07:19.125','MOCHA',9,1);
 
 -- Auto-generated SQL script #202011260210
-INSERT INTO public.shop_menu_items (created_at,description,modified_at,"name",price,menu_group_id)
+INSERT INTO shop_menu_items (created_at,description,modified_at,"name",price,menu_group_id)
 VALUES ('2020-11-26 02:09:07.848','Our signature Cold Brew','2020-11-26 02:09:11.142','Blend Nō 01',12.5,2);
-INSERT INTO public.shop_menu_items (created_at,description,modified_at,"name",price,menu_group_id)
+INSERT INTO shop_menu_items (created_at,description,modified_at,"name",price,menu_group_id)
 VALUES ('2020-11-26 02:10:12.008','Refreshing and Seasonal','2020-11-26 02:10:14.125','Summer 2020',11.5,2);
 
 -- Auto-generated SQL script #202011260212
 -- Password : Password@1
-INSERT INTO public.users (created_at,modified_at,"name", username, password, enabled)
+INSERT INTO users (created_at,modified_at,"name", username, password, enabled)
 VALUES ('2020-11-26 02:11:52.939','2020-11-26 02:11:55.144','Dhaval Mehta', 'dhaval', '$2y$12$nIg5HoXb.Okfzyu.C5PwKOPkvdusbW6WzM1vdHUKj2J74/8PoS/PO', true);
-INSERT INTO public.users (created_at,modified_at,"name", username, password, enabled)
+INSERT INTO users (created_at,modified_at,"name", username, password, enabled)
 VALUES ('2020-11-26 02:12:12.316','2020-11-26 02:12:14.325','John Doe', 'john', '$2y$12$nIg5HoXb.Okfzyu.C5PwKOPkvdusbW6WzM1vdHUKj2J74/8PoS/PO', true);
 
 -- Auto-generated SQL script #202011260213
-INSERT INTO public.users_addresses (users_id,addresses_id)
+INSERT INTO users_addresses (users_id,addresses_id)
 VALUES (1,2);
 
 -- Auto-generated SQL script #202011260213
-INSERT INTO public.users_contact_details (users_id,contact_details_id)
+INSERT INTO users_contact_details (users_id,contact_details_id)
 VALUES (1,2);
 
 -- Auto-generated SQL script #202011260214
-INSERT INTO public.shop_users (created_at,modified_at,"role",shop_id,user_id)
+INSERT INTO shop_users (created_at,modified_at,"role",shop_id,user_id)
 VALUES ('2020-11-26 02:14:31.708','2020-11-26 02:14:33.755','OWNER',1,2);
 
 -- Auto-generated SQL script #202011260217
 -- Auto-generated SQL script #202011260217
-INSERT INTO public.shop_queues (active,created_at,modified_at,queue_no,shop_id, avg_processing_duration)
+INSERT INTO shop_queues (active,created_at,modified_at,queue_no,shop_id, avg_processing_duration)
 VALUES (true,'2020-11-26 02:17:29.823','2020-11-26 02:17:32.588',1,1, 180);
-INSERT INTO public.shop_queues (active,created_at,modified_at,queue_no,shop_id, avg_processing_duration)
+INSERT INTO shop_queues (active,created_at,modified_at,queue_no,shop_id, avg_processing_duration)
 VALUES (true,'2020-11-26 02:17:34.611','2020-11-26 02:17:37.069',2,1, 180);
-INSERT INTO public.shop_queues (active,created_at,modified_at,queue_no,shop_id, avg_processing_duration)
+INSERT INTO shop_queues (active,created_at,modified_at,queue_no,shop_id, avg_processing_duration)
 VALUES (true,'2020-11-26 02:17:08.939','2020-11-26 02:17:11.950',3,1, 180);
 

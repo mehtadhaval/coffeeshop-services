@@ -1,0 +1,475 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.10.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+    <changeSet author="dhaval" context="master" id="create-table-users">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="users_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enabled" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="create-table-order_processing_events">
+        <createTable tableName="order_processing_events">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="order_processing_events_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_id" type="BIGINT"/>
+            <column name="processed_by_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="create-table-shop_queue_orders">
+        <createTable tableName="shop_queue_orders">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="shop_queue_orders_pkey"/>
+            </column>
+            <column name="active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_id" type="BIGINT"/>
+            <column name="shop_queue_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="create-table-orders_payments">
+        <createTable tableName="orders_payments">
+            <column name="order_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payments_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="create-table-shops_contact_details">
+        <createTable tableName="shops_contact_details">
+            <column name="shop_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contact_details_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="create-table-shop_menu">
+        <createTable tableName="shop_menu">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="shop_menu_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notes" type="VARCHAR(255)"/>
+            <column name="shop_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="create-table-shop_menu_items">
+        <createTable tableName="shop_menu_items">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="shop_menu_items_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="modified_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="FLOAT8"/>
+            <column name="menu_group_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="create-table-shops_timings">
+        <createTable tableName="shops_timings">
+            <column name="shop_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="timings_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="create-table-shop_menu_groups">
+        <createTable tableName="shop_menu_groups">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="shop_menu_groups_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notes" type="VARCHAR(255)"/>
+            <column name="menu_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="create-table-addresses">
+        <createTable tableName="addresses">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="addresses_pkey"/>
+            </column>
+            <column name="city" type="VARCHAR(255)"/>
+            <column name="address_line1" type="VARCHAR(255)"/>
+            <column name="address_line2" type="VARCHAR(255)"/>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="latitude" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="longitude" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="zip" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="create-table-shop_timings">
+        <createTable tableName="shop_timings">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="shop_timings_pkey"/>
+            </column>
+            <column name="close_time" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="open_time" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="shop_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="create-table-users_contact_details">
+        <createTable tableName="users_contact_details">
+            <column name="users_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contact_details_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="create-table-shops_addresses">
+        <createTable tableName="shops_addresses">
+            <column name="shop_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="addresses_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="create-table-shops">
+        <createTable tableName="shops">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="shops_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="currency_code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="location_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="queue_count" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="queue_size" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="create-table-shop_users">
+        <createTable tableName="shop_users">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="shop_users_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="shop_id" type="BIGINT"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="create-table-contact_details">
+        <createTable tableName="contact_details">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="contact_details_pkey"/>
+            </column>
+            <column name="contact_type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="create-table-orders">
+        <createTable tableName="orders">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="orders_pkey"/>
+            </column>
+            <column name="amount" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="discount" type="FLOAT8"/>
+            <column name="modified_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notes" type="VARCHAR(255)"/>
+            <column name="processing_duration" type="BIGINT"/>
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_payment" type="FLOAT8"/>
+            <column name="queue_id" type="BIGINT"/>
+            <column name="shop_id" type="BIGINT"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="create-table-users_addresses">
+        <createTable tableName="users_addresses">
+            <column name="users_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="addresses_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="create-table-order_payments">
+        <createTable tableName="order_payments">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="order_payments_pkey"/>
+            </column>
+            <column name="amount" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_mode" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="create-table-shop_queues">
+        <createTable tableName="shop_queues">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="shop_queues_pkey"/>
+            </column>
+            <column name="active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="avg_processing_duration" type="BIGINT"/>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="queue_no" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="shop_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="create-table-order_items">
+        <createTable tableName="order_items">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="order_items_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notes" type="VARCHAR(255)"/>
+            <column name="price" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="shop_menu_item_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-order_processing_events-processed_by_id">
+        <addForeignKeyConstraint baseColumnNames="processed_by_id" baseTableName="order_processing_events" constraintName="fk_order_processing_events_processed_by_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-uk-orders_payments-payments_id">
+        <addUniqueConstraint columnNames="payments_id" constraintName="uk_orders_payments_payments_id" tableName="orders_payments"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-uk-shops_timings-timings_id">
+        <addUniqueConstraint columnNames="timings_id" constraintName="uk_shops_timings_timings_id" tableName="shops_timings"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-shop_menu_groups-menu_id">
+        <addForeignKeyConstraint baseColumnNames="menu_id" baseTableName="shop_menu_groups" constraintName="fk_shop_menu_groups_menu_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shop_menu" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-users_addresses-addresses_id">
+        <addForeignKeyConstraint baseColumnNames="addresses_id" baseTableName="users_addresses" constraintName="fk_users_addresses_addresses_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="addresses" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-shops_addresses-addresses_id">
+        <addForeignKeyConstraint baseColumnNames="addresses_id" baseTableName="shops_addresses" constraintName="fk_shops_addresses_addresses_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="addresses" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-users_contact_details-users_id">
+        <addForeignKeyConstraint baseColumnNames="users_id" baseTableName="users_contact_details" constraintName="fk_users_contact_details_users_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-shop_users-user_id">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="shop_users" constraintName="fk_shop_users_user_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-shop_users-shop_id">
+        <addForeignKeyConstraint baseColumnNames="shop_id" baseTableName="shop_users" constraintName="fk_shop_users_shop_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shops" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-shops_contact_details-contact_details_id">
+        <addForeignKeyConstraint baseColumnNames="contact_details_id" baseTableName="shops_contact_details" constraintName="fk_shops_contact_details_contact_details_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="contact_details" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-users_contact_details-contact_details_id">
+        <addForeignKeyConstraint baseColumnNames="contact_details_id" baseTableName="users_contact_details" constraintName="fk_users_contact_details_contact_details_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="contact_details" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-orders-shop_id">
+        <addForeignKeyConstraint baseColumnNames="shop_id" baseTableName="orders" constraintName="fk_orders_shop_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shops" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-orders-user_id">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="orders" constraintName="fk_orders_user_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-orders-queue_id">
+        <addForeignKeyConstraint baseColumnNames="queue_id" baseTableName="orders" constraintName="fk_orders_queue_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shop_queue_orders" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-users_addresses-users_id">
+        <addForeignKeyConstraint baseColumnNames="users_id" baseTableName="users_addresses" constraintName="fk_users_addresses_users_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-order_payments-order_id">
+        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_payments" constraintName="fk_order_payments_order_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="orders" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-shop_queues-shop_id">
+        <addForeignKeyConstraint baseColumnNames="shop_id" baseTableName="shop_queues" constraintName="fk_shop_queues_shop_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shops" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-order_items-order_id">
+        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_items" constraintName="fk_order_items_order_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="orders" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-order_items-shop_menu_item_id">
+        <addForeignKeyConstraint baseColumnNames="shop_menu_item_id" baseTableName="order_items" constraintName="fk_order_items_shop_menu_item_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shop_menu_items" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-order_processing_events-order_id">
+        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_processing_events" constraintName="fk_order_processing_events_order_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="orders" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-shop_queue_orders-order_id">
+        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="shop_queue_orders" constraintName="fk_shop_queue_orders_order_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="orders" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-shop_queue_orders-shop_queue_id">
+        <addForeignKeyConstraint baseColumnNames="shop_queue_id" baseTableName="shop_queue_orders" constraintName="fk_shop_queue_orders_shop_queue_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shop_queues" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-orders_payments-payments_id">
+        <addForeignKeyConstraint baseColumnNames="payments_id" baseTableName="orders_payments" constraintName="fk_orders_payments_payments_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="order_payments" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-orders_payments-order_id">
+        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="orders_payments" constraintName="fk_orders_payments_order_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="orders" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-shops_contact_details-shop_id">
+        <addForeignKeyConstraint baseColumnNames="shop_id" baseTableName="shops_contact_details" constraintName="fk_shops_contact_details_shop_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shops" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-shop_menu-shop_id">
+        <addForeignKeyConstraint baseColumnNames="shop_id" baseTableName="shop_menu" constraintName="fk_shop_menu_shop_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shops" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-shop_menu_items-menu_group_id">
+        <addForeignKeyConstraint baseColumnNames="menu_group_id" baseTableName="shop_menu_items" constraintName="fk_shop_menu_items_menu_group_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shop_menu_groups" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-shops_timings-timings_id">
+        <addForeignKeyConstraint baseColumnNames="timings_id" baseTableName="shops_timings" constraintName="fk_shops_timings_timings_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shop_timings" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-shops_timings-shop_id">
+        <addForeignKeyConstraint baseColumnNames="shop_id" baseTableName="shops_timings" constraintName="fk_shops_timings_shop_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shops" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-shop_timings-shop_id">
+        <addForeignKeyConstraint baseColumnNames="shop_id" baseTableName="shop_timings" constraintName="fk_shop_timings_shop_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shops" validate="true"/>
+    </changeSet>
+    <changeSet author="dhaval" context="master" id="add-fk-shops_addresses-shop_id">
+        <addForeignKeyConstraint baseColumnNames="shop_id" baseTableName="shops_addresses" constraintName="fk_shops_addresses_shop_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="shops" validate="true"/>
+    </changeSet>
+
+    <changeSet author="dhaval" context="master" id="create-index-shop_queues-queue_no">
+        <createIndex indexName="idx_shop_queues_queue_no" tableName="shop_queues" unique="false">
+            <column name="queue_no"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>
