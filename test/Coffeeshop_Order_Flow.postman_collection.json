@@ -223,6 +223,52 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Place an Order without Auth",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e5e070cf-27b7-49cd-b9f8-d30f15cdfe75",
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"shop\": {\n        \"id\": 1\n    },\n    \"notes\": \"Make it extra sweet\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{coffeeshop-service-url}}/api/v1/orders/",
+					"host": [
+						"{{coffeeshop-service-url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {
@@ -299,7 +345,7 @@
 	],
 	"variable": [
 		{
-			"id": "27b37c06-6acc-4369-8f75-719cfd71188a",
+			"id": "978816b2-5ce8-4686-9f62-eca6c4101e52",
 			"key": "coffeeshop-service-url",
 			"value": "localhost:8080"
 		}
