@@ -4,7 +4,7 @@ This project contains backend services for a Coffeeshop.
 
 ## Architecture
 
-Header over to `docs` directory
+Head over to `docs` directory
   
 ## Security
 
