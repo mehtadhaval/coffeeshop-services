@@ -21,9 +21,5 @@ public class ShopTo {
 
     private List<AddressTo> addresses;
 
-    private Integer queueCount;
-
-    private Integer queueSize;
-
     private List<ShopTimingTo> timings;
 }
