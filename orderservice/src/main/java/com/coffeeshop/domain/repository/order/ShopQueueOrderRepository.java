@@ -6,11 +6,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ShopQueueOrderRepository extends JpaRepository<ShopQueueOrder, Long> {
     long countAllByShopQueueIdAndActiveTrue(Long shopQueueId);
 
     Page<ShopQueueOrder> findAllByShopQueueIdAndActiveFalse(Long shopQueueId, Pageable pageable);
 
-    long countAllByShopQueueIdAndIdLessThanAndActiveTrue(Long shopQueueId, Long id);
+    List<ShopQueueOrder> findAllByShopQueueIdAndIdLessThanEqualAndActiveTrue(Long shopQueueId, Long id);
 }

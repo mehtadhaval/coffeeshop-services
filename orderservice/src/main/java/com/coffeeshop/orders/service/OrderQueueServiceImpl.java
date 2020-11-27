@@ -68,12 +68,17 @@ public class OrderQueueServiceImpl implements OrderQueueService {
         Order order = orderRepository.getOne(orderId);
         ShopQueueOrder queueOrder = order.getQueue();
         ShopQueue shopQueue = queueOrder.getShopQueue();
+
         // Find active orders in the queue before this order
-        long ordersInQueue = shopQueueOrderRepository.countAllByShopQueueIdAndIdLessThanAndActiveTrue(
+        List<ShopQueueOrder> queueOrders = shopQueueOrderRepository.findAllByShopQueueIdAndIdLessThanEqualAndActiveTrue(
                 shopQueue.getId(), queueOrder.getId());
 
-        long queuePosition = ordersInQueue + 1;
+        long queuePosition = queueOrders.size();
 
-        return new QueuePositionTo(queuePosition, queuePosition * shopQueue.getAvgProcessingDuration());
+        long orderItemsCount = queueOrders.stream()
+                .mapToLong(shopQueueOrder -> shopQueueOrder.getOrder().getItems().size())
+                .sum();
+
+        return new QueuePositionTo(queuePosition, orderItemsCount * shopQueue.getAvgProcessingDuration());
     }
 }
