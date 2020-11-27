@@ -49,3 +49,5 @@ Swagger docs are available at http://localhost:8080/v2/api-docs
 ### Technical
 - Implement all the microservices (`OrderService`, `CustomerService`, `ShopService`)
 - Setup API gateway and service discovery for inter-service communication
+- Unit tests
+- CI pipeline
