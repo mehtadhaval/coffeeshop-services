@@ -11,8 +11,8 @@
 	<groupId>com.coffeeshop</groupId>
 	<artifactId>authservice</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>authservice</name>
-	<description>Order Service for Coffee Shop Services</description>
+	<name>Auth Service</name>
+	<description>Auth Service for Coffee Shop Services</description>
 
 	<properties>
 		<java.version>1.8</java.version>

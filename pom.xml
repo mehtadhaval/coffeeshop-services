@@ -17,6 +17,7 @@
     <artifactId>parent</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
+    <name>Parent project</name>
 
     <modules>
         <module>orderservice</module>
