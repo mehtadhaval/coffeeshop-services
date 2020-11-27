@@ -8,7 +8,6 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>com.coffeeshop</groupId>
 	<artifactId>authservice</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>Auth Service</name>

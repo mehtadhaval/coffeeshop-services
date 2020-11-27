@@ -32,3 +32,20 @@ docker-compose up --build -d
 ## Test
 
 Run the Postman collection available at `test/Coffeeshop_Order_Flow.postman_collection.json`
+
+## Swagger Docs
+
+Swagger docs are available at http://localhost:8080/v2/api-docs
+
+## Roadmap
+
+### Functional
+
+- Support for capturing Payments from Customer
+- Support for Discount Coupons
+- Support for customizing menu
+- Support for configuring fixed charges per order (takeway charge, etc)
+
+### Technical
+- Implement all the microservices (`OrderService`, `CustomerService`, `ShopService`)
+- Setup API gateway and service discovery for inter-service communication
