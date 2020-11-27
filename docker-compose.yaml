@@ -1,8 +1,36 @@
 version: "3.4"
 
 services:
+
+  authservice:
+    image: authservice:1.0.0
+    container_name: coffeeshop_authservice
+    build:
+      context: authservice
+    command: --spring.profiles.active=docker-compose
+    ports:
+      - "9000:9000"
+    networks:
+      - coffeeshop_network
+    depends_on:
+      - orderservice # since orderservice bootstraps the DB
+
+  orderservice:
+    image: orderservice:1.0.0
+    container_name: coffeeshop_orderservice
+    build:
+      context: orderservice
+    command: --spring.profiles.active=docker-compose
+    ports:
+      - "8080:8080"
+    networks:
+      - coffeeshop_network
+    depends_on:
+      - coffeeshop-db
+
   coffeeshop-db:
     image: postgres:13.1
+    container_name: coffeeshop_db
     environment:
       POSTGRES_USER: coffeeshop
       POSTGRES_PASSWORD: 975ef70ce2dd7ae8dd7de7c930d90d0d
@@ -13,6 +41,7 @@ services:
       - coffeeshop_network
     volumes:
       - db-data:/var/lib/postgresql/data
+
 networks:
   coffeeshop_network:
     driver: bridge
