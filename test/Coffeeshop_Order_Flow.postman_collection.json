@@ -1,0 +1,308 @@
+{
+	"info": {
+		"_postman_id": "8ee91b92-fce8-4d10-9610-693117ff3d31",
+		"name": "Coffeeshop Order Flow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Place an Order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e5e070cf-27b7-49cd-b9f8-d30f15cdfe75",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Check order total amount\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.total).to.eql(28.5);",
+							"});",
+							"",
+							"pm.test(\"Check order status\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"PLACED\");",
+							"});",
+							"",
+							"pm.globals.set(\"orderId\", pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"shop\": {\n        \"id\": 1\n    },\n    \"items\": [\n        {\n            \"shopMenuItem\": {\n            \"id\": 1\n        },\n        \"quantity\": 1\n        },\n        {\n            \"shopMenuItem\": {\n            \"id\": 5\n        },\n        \"quantity\": 2,\n        \"notes\": \"Don't add Cinnamon\"\n        }        \n    ],\n    \"notes\": \"Make it extra sweet\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{coffeeshop-service-url}}/api/v1/orders/",
+					"host": [
+						"{{coffeeshop-service-url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Order Details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ac7b218a-20b1-4b51-b577-158a6b818d57",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check order total amount\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.total).to.eql(28.5);",
+							"});",
+							"",
+							"pm.test(\"Check order status\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"PLACED\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{coffeeshop-service-url}}/api/v1/orders/{{orderId}}",
+					"host": [
+						"{{coffeeshop-service-url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"{{orderId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Place an Order with negative quantity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e5e070cf-27b7-49cd-b9f8-d30f15cdfe75",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"shop\": {\n        \"id\": 1\n    },\n    \"items\": [\n        {\n            \"shopMenuItem\": {\n            \"id\": 1\n        },\n        \"quantity\": -1\n        }     \n    ],\n    \"notes\": \"Make it extra sweet\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{coffeeshop-service-url}}/api/v1/orders/",
+					"host": [
+						"{{coffeeshop-service-url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Place an Order with no selected items",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e5e070cf-27b7-49cd-b9f8-d30f15cdfe75",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"shop\": {\n        \"id\": 1\n    },\n    \"notes\": \"Make it extra sweet\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{coffeeshop-service-url}}/api/v1/orders/",
+					"host": [
+						"{{coffeeshop-service-url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Order Details for an Invalid orderId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ac7b218a-20b1-4b51-b577-158a6b818d57",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{coffeeshop-service-url}}/api/v1/orders/999999",
+					"host": [
+						"{{coffeeshop-service-url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"999999"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "client_authentication",
+				"value": "body",
+				"type": "string"
+			},
+			{
+				"key": "scope",
+				"value": "read write",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "Password@1",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "dhaval",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "secret",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "coffeeshop-app",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "http://localhost:9000/oauth/token",
+				"type": "string"
+			},
+			{
+				"key": "tokenName",
+				"value": "authToken",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "password_credentials",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "165c6fac-c2d7-4a7e-a9df-0a5ccbf91ecf",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "1d6f9394-b89b-41fe-810c-8fc039c47ad1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "27b37c06-6acc-4369-8f75-719cfd71188a",
+			"key": "coffeeshop-service-url",
+			"value": "localhost:8080"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

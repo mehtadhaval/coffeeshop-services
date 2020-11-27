@@ -28,3 +28,7 @@ Run all the services
 ```
 docker-compose up --build -d
 ```
+
+## Test
+
+Run the Postman collection available at `test/Coffeeshop_Order_Flow.postman_collection.json`
