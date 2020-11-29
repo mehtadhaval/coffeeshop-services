@@ -6,6 +6,6 @@ import org.springframework.web.server.ResponseStatusException;
 public class AllQueuesAtCapacityException extends ResponseStatusException {
 
     public AllQueuesAtCapacityException() {
-        super(HttpStatus.BAD_REQUEST);
+        super(HttpStatus.NOT_ACCEPTABLE);
     }
 }

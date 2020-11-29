@@ -35,7 +35,7 @@ Run the Postman collection available at `test/Coffeeshop_Order_Flow.postman_coll
 
 ## Swagger Docs
 
-Swagger docs are available at http://localhost:8080/v2/api-docs
+Swagger docs are available at http://localhost:8080/swagger-ui/
 
 ## Roadmap
 
