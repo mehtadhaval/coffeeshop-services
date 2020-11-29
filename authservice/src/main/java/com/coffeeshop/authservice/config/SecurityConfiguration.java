@@ -18,30 +18,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeRequests()
-//                .antMatchers("/oauth/token").permitAll()
-//                .and()
-//                .csrf().disable();
-
-        /*
-        .oauth2ResourceServer().authenticationManagerResolver(httpServletRequest -> {
-            try {
-                return authenticationManagerBean();
-            } catch (Exception e) {
-                return null;
-            }
-        })
-         */
-    }
-//
-//    @Override
-//    public void configure(WebSecurity webSecurity) throws Exception {
-//        webSecurity.ignoring().antMatchers("/**");
-//    }
-
     @Autowired
     public void configureAuthenticationManager(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder.userDetailsService(userDetailsService);
